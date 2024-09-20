@@ -15,3 +15,5 @@ SUPERUSER_PASSWORD=
 ```
 docker compose up
 ```
+
+The Dashboard screen is at http://localhost:8000

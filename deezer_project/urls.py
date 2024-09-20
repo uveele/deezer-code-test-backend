@@ -23,5 +23,6 @@ from api.songplay.router import router_songplays
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router_searches.urls)),
-    path('api/', include(router_songplays.urls))
+    path('api/', include(router_songplays.urls)),
+    path('', include('app.urls'))
 ]

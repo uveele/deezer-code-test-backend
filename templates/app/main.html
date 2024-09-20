@@ -1,0 +1,132 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div class="min-h-full">
+        <nav class="bg-gray-200">
+          <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="flex h-16 items-center justify-between">
+              <div class="flex items-center">
+                <div class="flex-shrink-0">
+                    <img class="h-8" src="{% static 'deezer-logo.svg' %}">
+                </div>
+              </div>
+              <div class="-mr-2 flex md:hidden">
+                <!-- Mobile menu button -->
+                <button type="button" class="relative inline-flex items-center justify-center rounded-md bg-gray-800 p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" aria-controls="mobile-menu" aria-expanded="false">
+                  <span class="absolute -inset-0.5"></span>
+                  <span class="sr-only">Open main menu</span>
+                  <!-- Menu open: "hidden", Menu closed: "block" -->
+                  <svg class="block h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                  </svg>
+                  <!-- Menu open: "block", Menu closed: "hidden" -->
+                  <svg class="hidden h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </nav>
+      
+        <header class="bg-white shadow">
+          <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+            <h1 class="text-xl font-bold tracking-tight text-gray-900">Dashboard</h1>
+          </div>
+        </header>
+        <main class="pb-10">
+          <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+            
+            <div class="grid gap-4 grid-cols-2">
+
+              <div>
+                <h2 class="text-lg font-bold">Top 10 búsquedas</h2>
+                <div
+                  class="relative flex flex-col h-full overflow-scroll text-gray-700 bg-white shadow-md rounded-xl bg-clip-border">
+                  <table class="w-full text-left table-auto">
+                    <thead>
+                      <tr>
+                        <th class="p-4 border-b border-blue-gray-100 bg-blue-gray-50">
+                          <p class="block font-sans text-sm antialiased font-bold leading-none text-blue-gray-900 opacity-70">
+                            Query
+                          </p>
+                        </th>
+                        <th class="p-4 border-b border-blue-gray-100 bg-blue-gray-50">
+                          <p class="block font-sans text-sm antialiased font-bold leading-none text-blue-gray-900 opacity-70">
+                            Núm. búsquedas
+                          </p>
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for search in searches %}
+                      <tr>
+                        <td class="p-4 border-b border-blue-gray-50">
+                          <p class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
+                            {{ search.query }}
+                          </p>
+                        </td>
+                        <td class="p-4 border-b border-blue-gray-50">
+                          <p class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
+                            {{ search.num_searches }}
+                          </p>
+                        </td>
+                      </tr>
+                    {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div>
+                <h2 class="text-lg font-bold">Top 10 canciones más reproducidas</h2>
+                <div
+                class="relative flex flex-col w-full h-full overflow-scroll text-gray-700 bg-white shadow-md rounded-xl bg-clip-border">
+                  <table class="w-full text-left table-auto">
+                    <thead>
+                      <tr>
+                        <th class="p-4 border-b border-blue-gray-100 bg-blue-gray-50">
+                          <p class="block font-sans text-sm antialiased font-bold leading-none text-blue-gray-900 opacity-70">
+                            Canción
+                          </p>
+                        </th>
+                        <th class="min-w-48 p-4 border-b border-blue-gray-100 bg-blue-gray-50">
+                          <p class="block font-sans text-sm antialiased font-bold leading-none text-blue-gray-900 opacity-70">
+                            Núm. reproducciones
+                          </p>
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for songplay in songplays %}
+                      <tr>
+                        <td class="p-4 border-b border-blue-gray-50">
+                          <p class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
+                            <span class="font-bold italic">{{ songplay.title }}</span>, <span>{{ songplay.artist_name }}</span><br/>
+                            Album <span class="italic">{{ songplay.album_title }}</span>
+                          </p>
+                        </td>
+                        <td class="min-w-48 p-4 border-b border-blue-gray-50">
+                          <p class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
+                            {{ songplay.num_plays }}
+                          </p>
+                        </td>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+</body>
+</html>

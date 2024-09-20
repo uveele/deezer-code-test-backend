@@ -15,6 +15,6 @@ try:
         password=os.getenv('SUPERUSER_PASSWORD'))
     superuser.save()
 except IntegrityError:
-    print(f"Super User with username {os.getenv('SUPERUSER_USERNAME')} is already exit!")
+    print(f"Super User with username {os.getenv('SUPERUSER_USERNAME')} already exist!")
 except Exception as e:
     print(e)
